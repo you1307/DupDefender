@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="405.0" prefWidth="709.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.thetechnoobs.fishtank.dupdestroyer.MainPageController">
+   <children>
+      <Button fx:id="openExplorerButton" layoutX="475.0" layoutY="11.0" mnemonicParsing="false" text="Button" AnchorPane.leftAnchor="475.0" AnchorPane.topAnchor="11.0" />
+      <Label fx:id="selectedFolderTxt" layoutX="484.0" layoutY="52.0" text="folder to look in" />
+      <ScrollPane fx:id="scrollViewID" layoutX="6.0" layoutY="30.0" prefHeight="369.0" prefWidth="336.0" AnchorPane.bottomAnchor="5.666666666666686" AnchorPane.leftAnchor="6.0" AnchorPane.topAnchor="30.0">
+         <content>
+            <VBox fx:id="containerID" prefHeight="369.0" prefWidth="198.0" />
+         </content>
+      </ScrollPane>
+      <Label layoutX="140.0" layoutY="15.0" text="charts found" AnchorPane.topAnchor="15.0" />
+   </children>
+</AnchorPane>
