@@ -1,0 +1,59 @@
+#foundChartsListView {
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+}
+
+.album-img {
+    -fx-border-color: black;
+    -fx-border-width: 3;
+}
+
+.rounded-image {
+    -fx-background-radius: 60;
+    -fx-background-color: white;
+    -fx-padding: 10;
+}
+
+.root-pane {
+    -fx-focus-color: transparent;
+    -fx-border-color: #251f1e;
+    -fx-border-width: 3;
+    -fx-background-color: #9d9d9d;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+}
+
+.root-pane:selected{
+    -fx-focus-color: transparent;
+        -fx-border-color: blue;
+        -fx-border-width: 3;
+        -fx-background-color: #9d9d9d;
+        -fx-border-radius: 10;
+        -fx-background-radius: 10;
+}
+
+/* Remove selection background color from ListView cells */
+.list-cell:selected {
+    /* Transparent background when selected */
+    -fx-background-color: transparent;
+}
+
+.list-cell:selected:focused {
+    /* Transparent background when selected and focused */
+    -fx-background-color: transparent;
+}
+
+.list-cell:selected:hover {
+    /* Transparent background when selected and hovered */
+    -fx-background-color: transparent;
+}
+
+.list-cell:focused {
+    /* Optional: Remove focus highlight */
+    -fx-background-color: transparent;
+}
+
+.list-cell:hover {
+    /* Optional: Style for cells when hovered */
+    -fx-background-color: transparent; /* Light gray background on hover */
+}

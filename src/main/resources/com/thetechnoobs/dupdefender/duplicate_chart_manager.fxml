@@ -1,14 +1,350 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.thetechnoobs.dupdefender.DuplicateChartManager"
-            prefHeight="400.0" prefWidth="600.0" >
-
+<AnchorPane prefHeight="730.0" prefWidth="1326.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.thetechnoobs.dupdefender.DuplicateChartManagerController">
+   <children>
+      <Pane fx:id="leftChartPrevewID" layoutX="8.0" layoutY="16.0" prefHeight="144.0" prefWidth="307.0" style="-fx-border-color: black; -fx-border-radius: 10;" AnchorPane.leftAnchor="5.0">
+         <children>
+            <VBox alignment="CENTER" layoutX="116.0" layoutY="23.0" prefHeight="100.0" prefWidth="164.0">
+               <children>
+                  <Label fx:id="leftChartNameTxtID" text="Name" />
+                  <Label fx:id="leftChartArtistTxtID" text="Artist" />
+                  <Label fx:id="leftChartAlbumTxtID" text="Album" />
+                  <Label fx:id="leftChartCharterTxtID" text="Charter" />
+               </children>
+            </VBox>
+            <ImageView fx:id="leftChartAlbumImgID" fitHeight="100.0" fitWidth="111.0" layoutX="3.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true" />
+            <Label fx:id="leftChartPathFolderLabelID" layoutX="10.0" layoutY="6.0" prefHeight="17.0" prefWidth="287.0" text="path/to/chart/folder" textOverrun="LEADING_ELLIPSIS" />
+         </children>
+      </Pane>
+      <Pane fx:id="rightChartPreview" layoutX="1011.0" layoutY="16.0" prefHeight="144.0" prefWidth="307.0" style="-fx-border-color: black; -fx-border-radius: 10;" AnchorPane.rightAnchor="5.0">
+         <children>
+            <VBox alignment="CENTER" layoutX="1.0" layoutY="23.0" prefHeight="100.0" prefWidth="181.0">
+               <children>
+                  <Label fx:id="rightChartNameTxtID" text="Name" />
+                  <Label fx:id="rightChartArtistTxtID" text="Artist" />
+                  <Label fx:id="rightChartAlbumTxtID" text="Album" />
+                  <Label fx:id="rightChartCharterTxtID" text="Charter" />
+               </children>
+            </VBox>
+            <ImageView fx:id="rightChartAlbumImgID" fitHeight="100.0" fitWidth="100.0" layoutX="193.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true" />
+            <Label fx:id="rightChartPathFolderLabelID" layoutX="14.0" layoutY="6.0" prefHeight="17.0" prefWidth="287.0" text="path/to/chart/folder" textOverrun="LEADING_ELLIPSIS" />
+         </children>
+      </Pane>
+      <ListView fx:id="duplicateChartsFoundListViewID" focusTraversable="false" layoutX="504.0" layoutY="33.0" prefHeight="278.0" prefWidth="317.0" />
+      <Label layoutX="607.0" layoutY="16.0" text="Charts with duplicats" textAlignment="CENTER" />
+      <Pane layoutX="504.0" layoutY="320.0" prefHeight="408.0" prefWidth="317.0" style="-fx-border-color: black; -fx-border-radius: 20; -fx-background-radius: 20;">
+         <children>
+            <Label layoutX="116.0" layoutY="5.0" text="Duplicate charts" />
+            <ListView fx:id="duplicateChartsListviewID" focusTraversable="false" layoutX="5.0" layoutY="23.0" prefHeight="278.0" prefWidth="307.0" />
+            <HBox alignment="CENTER" layoutX="79.0" layoutY="310.0" prefHeight="51.0" prefWidth="160.0" spacing="5.0" style="-fx-border-color: black; -fx-border-radius: 10;">
+               <children>
+                  <Pane prefHeight="200.0" prefWidth="220.0" style="-fx-border-color: gray; -fx-border-radius: 5; -fx-background-radius: 5;">
+                     <children>
+                        <ImageView fx:id="sendChartLeftImgBtnID" fitHeight="40.0" fitWidth="40.0" layoutX="5.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@arrow_left_stop.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </Pane>
+                  <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: gray; -fx-border-radius: 5; -fx-background-radius: 5;">
+                     <children>
+                        <ImageView fx:id="deleteSelectedChartImgID" fitHeight="30.0" fitWidth="30.0" layoutX="4.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@trash.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </Pane>
+                  <Pane prefHeight="200.0" prefWidth="220.0" style="-fx-border-radius: 5; -fx-border-color: gray; -fx-background-radius: 5;">
+                     <children>
+                        <ImageView fx:id="sendChartRightImgBtnID" fitHeight="40.0" fitWidth="40.0" layoutX="5.0" pickOnBounds="true" preserveRatio="true" rotate="180.0">
+                           <image>
+                              <Image url="@arrow_left_stop.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </Pane>
+               </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </HBox>
+         </children>
+      </Pane>
+      <Pane layoutX="1014.0" layoutY="676.0" prefHeight="30.0" prefWidth="35.0" style="-fx-border-color: gray; -fx-border-radius: 5; -fx-background-radius: 5;" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="276.0">
+         <children>
+            <ImageView fx:id="sendRightChartCenterImgBtnID" fitHeight="30.0" fitWidth="30.0" layoutX="5.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@arrow_left_stop.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane layoutX="1024.0" layoutY="686.0" prefHeight="30.0" prefWidth="35.0" style="-fx-border-color: gray; -fx-border-radius: 5; -fx-background-radius: 5;" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="275.0">
+         <children>
+            <ImageView fx:id="sendLeftChartCenterImgBtnID" fitHeight="30.0" fitWidth="30.0" layoutX="3.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true" rotate="180.0">
+               <image>
+                  <Image url="@arrow_left_stop.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane layoutX="250.0" layoutY="695.0" prefHeight="30.0" prefWidth="25.0" style="-fx-border-color: gray; -fx-border-radius: 5; -fx-background-radius: 5;" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="247.0">
+         <children>
+            <ImageView fx:id="deleteLeftCharterImgBtnID" fitHeight="20.0" fitWidth="15.0" layoutX="5.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@trash.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane layoutX="1050.0" layoutY="695.0" prefHeight="30.0" prefWidth="25.0" style="-fx-border-color: gray; -fx-border-radius: 5; -fx-background-radius: 5;" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="248.0">
+         <children>
+            <ImageView fx:id="deleteRightCharterImgBtnID" fitHeight="20.0" fitWidth="15.0" layoutX="5.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@trash.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane fx:id="extraChartInfoLeftPaneID" layoutX="5.0" layoutY="403.0" prefHeight="278.0" prefWidth="307.0" style="-fx-border-color: black; -fx-border-radius: 10;" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="403.0">
+         <children>
+            <ScrollPane hbarPolicy="NEVER" layoutX="1.0" layoutY="3.0" prefHeight="272.0" prefWidth="305.0" style="-fx-background-radius: 15;">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="277.0" prefWidth="305.0" style="-fx-background-radius: 15;">
+                     <children>
+                        <VBox fx:id="extraChartInfoLeftVboxID" alignment="TOP_CENTER" prefHeight="278.0" prefWidth="307.0" style="-fx-background-radius: 15;" />
+                     </children>
+                  </AnchorPane>
+              </content>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </ScrollPane>
+         </children>
+      </Pane>
+      <Pane fx:id="rightDificultyIconPaneID" layoutX="1015.0" layoutY="172.0" prefHeight="86.0" prefWidth="305.0" style="-fx-border-color: black; -fx-border-radius: 10;">
+         <children>
+            <HBox alignment="CENTER" prefHeight="86.0" prefWidth="305.0" spacing="10.0">
+               <children>
+                  <VBox alignment="TOP_CENTER" prefHeight="50.0" prefWidth="50.0">
+                     <children>
+                        <ImageView fx:id="rightGuitarDiffImgID" fitHeight="45.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@guitarDiffIcon.png" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="rightGuitarDiffLabelID" text="Label" />
+                     </children>
+                  </VBox>
+                  <VBox alignment="TOP_CENTER" prefHeight="50.0" prefWidth="50.0">
+                     <children>
+                        <ImageView fx:id="rightDrumDiffImgID" fitHeight="45.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@drumDiffIcon.png" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="rightDrumDiffLabelID" text="Label" />
+                     </children>
+                  </VBox>
+                  <VBox alignment="TOP_CENTER" prefHeight="50.0" prefWidth="50.0">
+                     <children>
+                        <ImageView fx:id="rightLyricDiffImgID" fitHeight="45.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@lyricsDiff.png" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="rightLyricDiffLabelID" text="Label" />
+                     </children>
+                  </VBox>
+                  <VBox alignment="TOP_CENTER" prefHeight="50.0" prefWidth="50.0">
+                     <children>
+                        <ImageView fx:id="rightBassDiffImgID" fitHeight="45.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@bassDiffIcon.png" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="rightBassDiffLabelID" text="Label" />
+                     </children>
+                  </VBox>
+                  <VBox alignment="TOP_CENTER" prefHeight="50.0" prefWidth="50.0">
+                     <children>
+                        <ImageView fx:id="rightKeysDiffImgID" fitHeight="45.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@keysDiffIcon.png" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="rightKeysDiffLabelID" text="Label" />
+                     </children>
+                  </VBox>
+               </children>
+               <padding>
+                  <Insets top="10.0" />
+               </padding>
+            </HBox>
+         </children>
+      </Pane>
+      <Pane fx:id="leftDificultyIconPaneID" layoutX="6.0" layoutY="172.0" prefHeight="86.0" prefWidth="305.0" style="-fx-border-color: black; -fx-border-radius: 10;">
+         <children>
+            <HBox alignment="CENTER" prefHeight="86.0" prefWidth="305.0" spacing="10.0">
+               <children>
+                  <VBox alignment="TOP_CENTER" prefHeight="50.0" prefWidth="50.0">
+                     <children>
+                        <ImageView fx:id="leftGuitarDiffImgID" fitHeight="45.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@guitarDiffIcon.png" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="leftGuitarDiffLabelID" text="Label" />
+                     </children>
+                  </VBox>
+                  <VBox alignment="TOP_CENTER" prefHeight="50.0" prefWidth="50.0">
+                     <children>
+                        <ImageView fx:id="leftDrumDiffImgID" fitHeight="45.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@drumDiffIcon.png" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="leftDrumDiffLabelID" text="Label" />
+                     </children>
+                  </VBox>
+                  <VBox alignment="TOP_CENTER" prefHeight="50.0" prefWidth="50.0">
+                     <children>
+                        <ImageView fx:id="leftLyricDiffImgID" fitHeight="45.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@lyricsDiff.png" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="leftLyricDiffLabelID" text="Label" />
+                     </children>
+                  </VBox>
+                  <VBox alignment="TOP_CENTER" prefHeight="50.0" prefWidth="50.0">
+                     <children>
+                        <ImageView fx:id="leftBassDiffImgID" fitHeight="45.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@bassDiffIcon.png" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="leftBassDiffLabelID" text="Label" />
+                     </children>
+                  </VBox>
+                  <VBox alignment="TOP_CENTER" prefHeight="50.0" prefWidth="50.0">
+                     <children>
+                        <ImageView fx:id="leftKeysDiffImgID" fitHeight="45.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@keysDiffIcon.png" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="leftKeysDiffLabelID" text="Label" />
+                     </children>
+                  </VBox>
+               </children>
+               <padding>
+                  <Insets top="10.0" />
+               </padding>
+            </HBox>
+         </children>
+      </Pane>
+      <Pane layoutX="1014.0" layoutY="403.0" prefHeight="278.0" prefWidth="307.0" style="-fx-border-radius: 10; -fx-border-color: black;">
+         <children>
+            <ScrollPane hbarPolicy="NEVER" layoutX="1.0" layoutY="3.0" prefHeight="272.0" prefWidth="305.0" style="-fx-background-radius: 15;" stylesheets="@styles.css">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="277.0" prefWidth="305.0" style="-fx-background-radius: 15; -fx-border-radius: 15;">
+                     <children>
+                        <VBox fx:id="extraChartInfoRightVboxID" alignment="TOP_CENTER" layoutX="-1.0" prefHeight="278.0" prefWidth="307.0" />
+                     </children>
+                  </AnchorPane>
+               </content>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </ScrollPane>
+         </children>
+      </Pane>
+      <ScrollPane layoutX="6.0" layoutY="271.0" prefHeight="121.0" prefWidth="305.0" vbarPolicy="NEVER">
+         <content>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="119.0" prefWidth="303.0">
+               <children>
+                  <HBox fx:id="leftMediaHboxID" alignment="CENTER" prefHeight="121.0" prefWidth="305.0" />
+               </children>
+            </AnchorPane>
+         </content>
+      </ScrollPane>
+      <ScrollPane layoutX="1015.0" layoutY="271.0" prefHeight="121.0" prefWidth="305.0" vbarPolicy="NEVER">
+         <content>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="119.0" prefWidth="303.0">
+               <children>
+                  <HBox fx:id="rightMediaHboxID" alignment="CENTER" prefHeight="121.0" prefWidth="305.0" />
+               </children>
+            </AnchorPane>
+         </content>
+      </ScrollPane>
+      <VBox alignment="TOP_CENTER" layoutX="321.0" layoutY="16.0" prefHeight="713.0" prefWidth="181.0" style="-fx-border-color: Black; -fx-border-radius: 10;" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="319.0" AnchorPane.topAnchor="16.0">
+         <children>
+            <HBox alignment="CENTER" prefHeight="45.0" prefWidth="181.0" spacing="3.0">
+               <children>
+                  <MenuButton fx:id="leftInstermentMenuID" mnemonicParsing="false" prefWidth="80.0" text="MenuButton">
+                     <items>
+                        <MenuItem mnemonicParsing="false" text="Action 1" />
+                        <MenuItem mnemonicParsing="false" text="Action 2" />
+                     </items>
+                  </MenuButton>
+                  <MenuButton fx:id="leftDifficultyMenuID" mnemonicParsing="false" prefWidth="80.0" text="MenuButton">
+                     <items>
+                        <MenuItem mnemonicParsing="false" text="Action 1" />
+                        <MenuItem mnemonicParsing="false" text="Action 2" />
+                     </items>
+                  </MenuButton>
+               </children>
+            </HBox>
+            <ScrollPane fx:id="leftChartImgScrollViewID" prefHeight="673.0" prefWidth="179.0">
+               <content>
+                  <ImageView fx:id="leftChartImgID" fitHeight="711.0" fitWidth="166.0" pickOnBounds="true" preserveRatio="true" />
+               </content>
+            </ScrollPane>
+         </children>
+      </VBox>
+      <VBox alignment="TOP_CENTER" layoutX="827.0" layoutY="13.0" prefHeight="713.0" prefWidth="179.0" style="-fx-border-color: black; -fx-border-radius: 10;">
+         <children>
+            <HBox alignment="CENTER" prefHeight="45.0" prefWidth="181.0" spacing="3.0">
+               <children>
+                  <MenuButton fx:id="rightInstermentMenuID" mnemonicParsing="false" prefWidth="80.0" text="MenuButton">
+                    <items>
+                      <MenuItem mnemonicParsing="false" text="Action 1" />
+                      <MenuItem mnemonicParsing="false" text="Action 2" />
+                    </items>
+                  </MenuButton>
+                  <MenuButton fx:id="rightDifficultyMenuID" mnemonicParsing="false" prefWidth="80.0" text="MenuButton">
+                    <items>
+                      <MenuItem mnemonicParsing="false" text="Action 1" />
+                      <MenuItem mnemonicParsing="false" text="Action 2" />
+                    </items>
+                  </MenuButton>
+               </children>
+            </HBox>
+            <ScrollPane fx:id="rightChartImgScrollViewID" prefHeight="672.0" prefWidth="181.0">
+               <content>
+                  <ImageView fx:id="rightChartImgID" fitHeight="711.0" fitWidth="166.0" pickOnBounds="true" preserveRatio="true" />
+               </content>
+            </ScrollPane>
+         </children>
+      </VBox>
+   </children>
 </AnchorPane>

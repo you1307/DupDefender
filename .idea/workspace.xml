@@ -1,31 +1,128 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="959d8070-040e-4469-bea7-1d15a3fcdc33" name="Changes" comment="" />
+    <list default="true" id="959d8070-040e-4469-bea7-1d15a3fcdc33" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/thetechnoobs/dupdefender/ChartVisualizer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/thetechnoobs/dupdefender/ChartVisualizer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/thetechnoobs/dupdefender/ChartVisulizerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/thetechnoobs/dupdefender/ChartVisulizerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/thetechnoobs/dupdefender/DuplicateChartManagerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/thetechnoobs/dupdefender/DuplicateChartManagerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/thetechnoobs/dupdefender/DuplicateSongItemViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/thetechnoobs/dupdefender/DuplicateSongItemViewController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/thetechnoobs/dupdefender/EncodingDetector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/thetechnoobs/dupdefender/EncodingDetector.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/thetechnoobs/dupdefender/ExtraImagesViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/thetechnoobs/dupdefender/ExtraImagesViewController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/thetechnoobs/dupdefender/FindDupsLoadingScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/thetechnoobs/dupdefender/FindDupsLoadingScreenController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/thetechnoobs/dupdefender/FolderToSearchItemController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/thetechnoobs/dupdefender/FolderToSearchItemController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/thetechnoobs/dupdefender/IniParserUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/thetechnoobs/dupdefender/IniParserUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/thetechnoobs/dupdefender/Interfaces.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/thetechnoobs/dupdefender/Interfaces.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/thetechnoobs/dupdefender/MainEntry.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/thetechnoobs/dupdefender/MainEntry.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/thetechnoobs/dupdefender/MainPageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/thetechnoobs/dupdefender/MainPageController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/thetechnoobs/dupdefender/MediaHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/thetechnoobs/dupdefender/MediaHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/thetechnoobs/dupdefender/MidiChartVisualizer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/thetechnoobs/dupdefender/MidiChartVisualizer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/thetechnoobs/dupdefender/SongItemViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/thetechnoobs/dupdefender/SongItemViewController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/thetechnoobs/dupdefender/Tools.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/thetechnoobs/dupdefender/Tools.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/thetechnoobs/dupdefender/models/ChartData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/thetechnoobs/dupdefender/models/ChartData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/thetechnoobs/dupdefender/models/SongModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/thetechnoobs/dupdefender/models/SongModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/thetechnoobs/dupdefender/duplicateSongItemView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/thetechnoobs/dupdefender/duplicateSongItemView.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/thetechnoobs/dupdefender/duplicate_chart_manager.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/thetechnoobs/dupdefender/duplicate_chart_manager.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/thetechnoobs/dupdefender/extra_images_view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/thetechnoobs/dupdefender/extra_images_view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/thetechnoobs/dupdefender/find_dups_loading_screen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/thetechnoobs/dupdefender/find_dups_loading_screen.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/thetechnoobs/dupdefender/folder_to_search_view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/thetechnoobs/dupdefender/folder_to_search_view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/thetechnoobs/dupdefender/main-screen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/thetechnoobs/dupdefender/main-screen.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/thetechnoobs/dupdefender/songItemView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/thetechnoobs/dupdefender/songItemView.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/thetechnoobs/dupdefender/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/thetechnoobs/dupdefender/styles.css" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="FxmlFile" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 2
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "you1307"
+  }
 }]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/you1307/DupDefender.git",
+    "accountId": "65d41f3c-4b5a-4a09-990b-aa40b21501de"
+  }
+}]]></component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHomeTypeForPersistence" value="WRAPPER" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 2
+}</component>
   <component name="ProjectId" id="2nDVsS3fIu00X6qNq0X8dRWPZnD" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
-    "kotlin-language-version-configured": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;Application.MainEntry.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Unnamed.executor&quot;: &quot;Run&quot;,
+    &quot;Application.main.executor&quot;: &quot;Run&quot;,
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Jason/projects/IntelliJ/auto click&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.39655173&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;MavenSettings&quot;
   }
-}]]></component>
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Jason\projects\IntelliJ\DupDefender\src\main\resources\com\thetechnoobs\dupdefender" />
+      <recent name="C:\Users\Jason\projects\IntelliJ\DupDefender\src\main\resources" />
+      <recent name="C:\Users\Jason\projects\IntelliJ\DupDefender\src\main\java\com\thetechnoobs\dupdefender" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Jason\projects\IntelliJ\DupDefender\src\main\resources\com\thetechnoobs\dupdefender" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="main" type="Application" factoryName="Application" activateToolWindowBeforeRun="false">
+      <option name="MAIN_CLASS_NAME" value="com.thetechnoobs.dupdefender.MainEntry" />
+      <module name="DupDefender" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -36,5 +133,15 @@
       <updated>1728507842225</updated>
     </task>
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <pin-to-top-manager>
+      <pinned-members>
+        <PinnedItemInfo parentTag="com.thetechnoobs.dupdefender.models.SongModel" memberName="chartFolderPath" />
+      </pinned-members>
+    </pin-to-top-manager>
   </component>
 </project>

@@ -1,4 +1,4 @@
-package com.thetechnoobs.dupdefender.controllers;
+package com.thetechnoobs.dupdefender;
 
 import com.thetechnoobs.dupdefender.models.SongModel;
 import javafx.css.PseudoClass;

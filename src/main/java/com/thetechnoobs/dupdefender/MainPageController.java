@@ -1,9 +1,5 @@
-package com.thetechnoobs.dupdefender.controllers;
+package com.thetechnoobs.dupdefender;
 
-import com.thetechnoobs.dupdefender.ChartVisualizer;
-import com.thetechnoobs.dupdefender.Interfaces;
-import com.thetechnoobs.dupdefender.MidiChartVisualizer;
-import com.thetechnoobs.dupdefender.Tools;
 import com.thetechnoobs.dupdefender.models.SongModel;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
@@ -18,18 +14,20 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
 
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
-import java.io.*;
+import java.io.File;
+import java.io.IOException;
 import java.net.URISyntaxException;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 public class MainPageController {
     public Button openExplorerButton, regenChartVisualizationBtnID, lookForDupsBtnID;
@@ -38,9 +36,14 @@ public class MainPageController {
     public ScrollPane scrollPaneChartNotesID;
     public ListView<SongModel> foundChartsListView;
     public VBox foldersToSearchVBoxPaneID;
+    public MenuButton difficultyMenuID, instermentMenuID;
+    public Label guitarDiffLabelID, bassDiffLabelID, lyricDiffLabelID, drumDiffLabelID, keysDiffLabelID;
+    public ImageView guitarDiffImgID, bassDiffImgID, drumDiffImgID, lyricDiffImgID, keysDiffImgID;
+    public HBox mediaHboxID;
 
     private ObservableList<SongModel> songList = FXCollections.observableArrayList();
     private ArrayList<String> foldersToSearch = new ArrayList<>();
+    private ChartVisulizerController chartVisulizerController;
 
     @FXML
     public void initialize() {
@@ -51,6 +54,8 @@ public class MainPageController {
         clip.setArcWidth(20);
         clip.setArcHeight(20);
         albumCoverImgID.setClip(clip);
+
+        chartVisulizerController = new ChartVisulizerController(chartImgID, instermentMenuID, difficultyMenuID, scrollPaneChartNotesID);
 
         foundChartsListView.setCellFactory(param -> new ListCell<SongModel>() {
             private Node songItemView;
@@ -83,7 +88,7 @@ public class MainPageController {
         foundChartsListView.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
             if (newSelection != null) {
                 regenChartVisualizationBtnID.setVisible(true);
-                displayChartPreviewImg(newSelection, false);
+                chartVisulizerController.setSongData(newSelection);
                 displayChartInfo(newSelection);
             }else{
                 regenChartVisualizationBtnID.setVisible(false);
@@ -156,7 +161,7 @@ public class MainPageController {
             public void handle(MouseEvent mouseEvent) {
                 if(mouseEvent.getEventType() == MouseEvent.MOUSE_CLICKED){
                     SongModel songModel = songList.get(foundChartsListView.getSelectionModel().getSelectedIndex());
-                    displayChartPreviewImg(songModel, true);
+                    chartVisulizerController.setSongData(songModel);
                 }
             }
         });
@@ -208,56 +213,68 @@ public class MainPageController {
                         artistNameTxtID.setText(songData.artist);
                         charterNameTxtID.setText(songData.charter);
                         albumNameTxtID.setText(songData.extraData.get("album"));
-                    }
-                });
-            }
-        });
 
-        thread.start();
-    }
+                        mediaHboxID.getChildren().clear();
+                        List<Node> nodes = MediaHandler.getMedia(songData.chartFolderPath);
+                        mediaHboxID.getChildren().addAll(nodes);
 
-    private void displayChartPreviewImg(SongModel songModel, Boolean forceGen) {
-        Thread thread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                String format = "png";
-                File outputFile = new File(Path.of(songModel.chartFolderPath, "/chart_visualization."+format).toString());
-
-                if (!outputFile.exists() || forceGen) {
-                    System.out.println("generate img");
-                    if (songModel.chartType == SongModel.CHART) {
-                        try {
-                            BufferedImage chartBitmap = ChartVisualizer.generateChartBitmap(Path.of(songModel.chartFolderPath, "/notes.chart").toString());
-
-                            ImageIO.write(chartBitmap, format, outputFile);
-                        } catch (IOException e) {
+                        Set<String> supportedInsterments = null;
+                        try{
+                            if(songData.chartType == SongModel.CHART){
+                                supportedInsterments = InstrumentDetector.getSupportedInstruments(Path.of(songData.chartFolderPath, "notes.chart").toString());
+                            }else{
+                                supportedInsterments = InstrumentDetector.getSupportedInstruments(Path.of(songData.chartFolderPath, "notes.mid").toString());
+                            }
+                        }catch (Exception e){
                             e.printStackTrace();
                         }
-                    } else if (songModel.chartType == SongModel.MID) {
-                        try {
-                            BufferedImage bitmap = MidiChartVisualizer.generateChartBitmap(Path.of(songModel.chartFolderPath, "/notes.mid").toString());
 
-                            ImageIO.write(bitmap, format, outputFile);
-                        } catch (Exception e) {
-                            e.printStackTrace();
+                        if(supportedInsterments == null){
+                            return;
+                        }
+
+
+                        if(supportedInsterments.contains("guitar")){
+                            guitarDiffImgID.setImage(new Image(getClass().getResourceAsStream("guitarDiffIcon.png")));
+                            guitarDiffLabelID.setText(songData.extraData.get("diff_guitar"));
+                        }else{
+                            guitarDiffImgID.setImage(new Image(getClass().getResourceAsStream("guitarDiffIconNone.png")));
+                            guitarDiffLabelID.setText(null);
+                        }
+
+                        if(supportedInsterments.contains("bass")){
+                            bassDiffImgID.setImage(new Image(getClass().getResourceAsStream("bassDiffIcon.png")));
+                            bassDiffLabelID.setText(songData.extraData.get("diff_guitar"));
+                        }else{
+                            bassDiffImgID.setImage(new Image(getClass().getResourceAsStream("bassDiffIconNone.png")));
+                            bassDiffLabelID.setText(null);
+                        }
+
+                        if(supportedInsterments.contains("drums")){
+                            drumDiffImgID.setImage(new Image(getClass().getResourceAsStream("drumDiffIcon.png")));
+                            drumDiffLabelID.setText(songData.extraData.get("diff_drums"));
+                        }else{
+                            drumDiffImgID.setImage(new Image(getClass().getResourceAsStream("drumDiffIconNone.png")));
+                            drumDiffLabelID.setText(null);
+                        }
+
+                        if(supportedInsterments.contains("vocals")){
+                            lyricDiffImgID.setImage(new Image(getClass().getResourceAsStream("lyricsDiff.png")));
+                            lyricDiffLabelID.setText(songData.extraData.get("diff_vocals"));
+                        }else{
+                            lyricDiffImgID.setImage(new Image(getClass().getResourceAsStream("lyricsDiffNone.png")));
+                            lyricDiffLabelID.setText(null);
+                        }
+
+                        if(supportedInsterments.contains("keys")){
+                            keysDiffImgID.setImage(new Image(getClass().getResourceAsStream("keysDiffIcon.png")));
+                            keysDiffLabelID.setText(songData.extraData.get("diff_keys"));
+                        }else{
+                            keysDiffImgID.setImage(new Image(getClass().getResourceAsStream("keysDiffIconNone.png")));
+                            keysDiffLabelID.setText(songData.extraData.get("diff_keys"));
                         }
                     }
-                }
-
-                Image image = new Image(outputFile.toURI().toString());
-                scrollPaneChartNotesID.setMaxWidth(image.getWidth()+15);
-                chartImgID.setFitHeight(image.getHeight());
-                chartImgID.setFitWidth(image.getWidth());
-
-                Platform.runLater(new Runnable() {
-                    @Override
-                    public void run() {
-                        chartImgID.setImage(null);
-                        chartImgID.setImage(image);
-                        scrollPaneChartNotesID.setVvalue(1.0);
-                    }
                 });
-
             }
         });
 
@@ -311,6 +328,8 @@ public class MainPageController {
 
 
                     System.out.println(songModels.size());
+
+                    songList.clear();
 
                     songModels.forEach(songData -> {
                         Platform.runLater(() -> {

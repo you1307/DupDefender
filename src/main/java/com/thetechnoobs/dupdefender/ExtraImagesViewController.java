@@ -1,2 +1,6 @@
-package com.thetechnoobs.dupdefender;public class ExtraImagesViewControler {
+package com.thetechnoobs.dupdefender;
+
+public class ExtraImagesViewController {
+
+
 }

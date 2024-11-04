@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.thetechnoobs.dupdefender.FolderToSearchView"
-            prefHeight="400.0" prefWidth="600.0" >
-
+<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.thetechnoobs.dupdefender.FolderToSearchItemController">
+   <children>
+      <Label fx:id="folderPathTxtID" layoutX="14.0" layoutY="7.0" maxWidth="-Infinity" prefWidth="350.0" text="c:/a/path/to/folder" textOverrun="LEADING_ELLIPSIS" />
+      <ImageView fx:id="removeFolderBtnID" fitHeight="25.0" fitWidth="25.0" layoutX="261.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true" translateX="110.0">
+         <image>
+            <Image url="@close_ring_light.png" />
+         </image>
+      </ImageView>
+   </children>
 </AnchorPane>

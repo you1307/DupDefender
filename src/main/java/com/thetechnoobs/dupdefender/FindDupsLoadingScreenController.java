@@ -1,4 +1,4 @@
-package com.thetechnoobs.dupdefender.controllers;
+package com.thetechnoobs.dupdefender;
 
 import com.thetechnoobs.dupdefender.models.SongModel;
 import javafx.application.Platform;
@@ -12,7 +12,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.*;
 
 public class FindDupsLoadingScreenController {
 
@@ -22,48 +22,60 @@ public class FindDupsLoadingScreenController {
 
     private double progress = 0;
 
-    public void initialize(){
-
-
+    public void initialize() {
+        // Initialization code if needed
     }
 
-    private void searchForDups(){
-        Thread thread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                for (int i = 0; i < songModels.size(); i++) {
-                    progress++;
-                    //the model that will be used to compair the rest
-                    SongModel referanceSongModel = songModels.get(i);
+    private void searchForDups() {
+        Thread thread = new Thread(() -> {
+            // Map to group songs by name and artist
+            Map<String, List<SongModel>> songMap = new HashMap<>();
 
-                    ArrayList<SongModel> possibleSameCharts = new ArrayList<>();
-                    possibleSameCharts.add(referanceSongModel);
+            // Group songs
+            for (SongModel songModel : songModels) {
+                String key = songModel.name.trim().toLowerCase() + "|" + songModel.artist.trim().toLowerCase();
+                songMap.computeIfAbsent(key, k -> new ArrayList<>()).add(songModel);
+            }
 
-                    for (int j = 0; j < songModels.size(); j++) {
-                        boolean sameName = referanceSongModel.name.equals(songModels.get(j).name);
-                        boolean sameArtist = referanceSongModel.artist.equals(songModels.get(j).artist);
-                        boolean sameFilePath = referanceSongModel.chartFolderPath.equals(songModels.get(j).chartFolderPath);
+            // Set to keep track of processed song paths
+            Set<String> processedPaths = new HashSet<>();
 
-                        if(sameArtist && sameName && !sameFilePath){
-                            possibleSameCharts.add(songModels.get(j));
-                        }
-                    }
-                    if(possibleSameCharts.size() > 1){
-                        duplicatsList.add(possibleSameCharts);
-                    }
-
-
+            // Iterate over each group of songs
+            for (List<SongModel> group : songMap.values()) {
+                // Remove duplicates within the same folder
+                Map<String, SongModel> uniqueSongs = new HashMap<>();
+                for (SongModel song : group) {
+                    uniqueSongs.put(song.chartFolderPath, song);
                 }
 
-                Platform.runLater(new Runnable() {
-                    @Override
-                    public void run() {
-                        loadingProgress.setText(""+duplicatsList.size());
-                        openDupWindow();
-                        closeThisWindow();
+                // If more than one unique song exists, it's a duplicate group
+                if (uniqueSongs.size() > 1) {
+                    // Check if any of the songs have been processed
+                    boolean alreadyProcessed = false;
+                    for (SongModel song : uniqueSongs.values()) {
+                        if (processedPaths.contains(song.chartFolderPath)) {
+                            alreadyProcessed = true;
+                            break;
+                        }
                     }
-                });
+
+                    if (!alreadyProcessed) {
+                        // Add the group to duplicates list
+                        duplicatsList.add(new ArrayList<>(uniqueSongs.values()));
+                        // Mark songs as processed
+                        for (SongModel song : uniqueSongs.values()) {
+                            processedPaths.add(song.chartFolderPath);
+                        }
+                    }
+                }
             }
+
+            // Update the UI on the JavaFX Application Thread
+            Platform.runLater(() -> {
+                loadingProgress.setText("" + duplicatsList.size());
+                openDupWindow();
+                closeThisWindow();
+            });
         });
 
         thread.start();
@@ -74,8 +86,7 @@ public class FindDupsLoadingScreenController {
         stage.close();  // Close the current window
     }
 
-
-    private void openDupWindow(){
+    private void openDupWindow() {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("duplicate_chart_manager.fxml"));
             Parent root = fxmlLoader.load();
@@ -97,9 +108,8 @@ public class FindDupsLoadingScreenController {
         }
     }
 
-    public void setSongList(ArrayList<SongModel> songModels){
+    public void setSongList(ArrayList<SongModel> songModels) {
         this.songModels = songModels;
-
         searchForDups();
     }
 }

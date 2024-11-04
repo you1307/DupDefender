@@ -1,7 +1,7 @@
-package com.thetechnoobs.dupdefender.controllers;
+package com.thetechnoobs.dupdefender;
 
-import com.thetechnoobs.dupdefender.Interfaces;
 import javafx.event.EventHandler;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
