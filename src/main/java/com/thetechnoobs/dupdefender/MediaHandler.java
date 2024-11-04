@@ -2,8 +2,6 @@ package com.thetechnoobs.dupdefender;
 
 import javafx.animation.PauseTransition;
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.SnapshotParameters;

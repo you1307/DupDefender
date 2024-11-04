@@ -13,6 +13,7 @@ module com.thetechnoobs.dupdefender {
     requires javafx.media;
     requires javafx.swing;
     requires jcodec.javase;
+    requires java.compiler;
 
     opens com.thetechnoobs.dupdefender to javafx.fxml;
     exports com.thetechnoobs.dupdefender;

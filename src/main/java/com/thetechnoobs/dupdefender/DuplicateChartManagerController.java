@@ -1,7 +1,6 @@
 package com.thetechnoobs.dupdefender;
 
 import com.thetechnoobs.dupdefender.models.SongModel;
-import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
@@ -14,11 +13,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import javafx.util.Callback;
-
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -31,7 +25,7 @@ public class DuplicateChartManagerController {
     //left song stuff
     public Label leftChartNameTxtID, leftChartArtistTxtID, leftChartCharterTxtID, leftChartAlbumTxtID;
     public ImageView leftChartAlbumImgID, leftChartImgID, sendLeftChartCenterImgBtnID, sendRightChartCenterImgBtnID;
-    public ImageView deleteLeftCharterImgBtnID, deleteRightCharterImgBtnID;
+    public ImageView deleteLeftCharterImgBtnID;
     public ImageView leftGuitarDiffImgID, leftBassDiffImgID, leftDrumDiffImgID, leftLyricDiffImgID, leftKeysDiffImgID;
     public Label leftGuitarDiffLabelID, leftBassDiffLabelID, leftKeysDiffLabelID, leftDrumDiffLabelID, leftLyricDiffLabelID;
     public ScrollPane leftChartImgScrollViewID;
@@ -51,6 +45,7 @@ public class DuplicateChartManagerController {
     public Label rightChartNameTxtID, rightChartAlbumTxtID, rightChartCharterTxtID, rightChartArtistTxtID;
     public Label rightGuitarDiffLabelID, rightBassDiffLabelID, rightDrumDiffLabelID, rightLyricDiffLabelID, rightKeysDiffLabelID;
     public ImageView rightChartAlbumImgID, rightChartImgID;
+    public ImageView deleteRightCharterImgBtnID;
     public ImageView rightGuitarDiffImgID, rightBassDiffImgID, rightDrumDiffImgID, rightKeysDiffImgID, rightLyricDiffImgID;
     public ScrollPane rightChartImgScrollViewID;
     public Pane extraChartInfoRightPaneID;
@@ -61,7 +56,10 @@ public class DuplicateChartManagerController {
     public Label rightChartPathFolderLabelID;
 
 
+    //the charts that have dups
     private ObservableList<ArrayList<SongModel>> dupListModels = FXCollections.observableArrayList();
+
+    //individual duplicate charts
     private ObservableList<SongModel> chartDupsList = FXCollections.observableArrayList();
 
     SongModel curLeftSongModel, curRightSongModel;
@@ -144,6 +142,32 @@ public class DuplicateChartManagerController {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 returnSongModelToCenter(RIGHT_SIDE);
+            }
+        });
+
+        deleteRightCharterImgBtnID.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                if(curRightSongModel != null){
+                    dupListModels.get(duplicateChartsFoundListViewID.getSelectionModel().getSelectedIndex()).remove(curRightSongModel);
+                    chartDupsList.remove(curRightSongModel);
+                    Tools.deleteFolder(curRightSongModel.chartFolderPath);
+
+                    clearChartInfo(RIGHT_SIDE);
+                    duplicateChartsFoundListViewID.refresh();
+                }
+            }
+        });
+
+        deleteLeftCharterImgBtnID.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                dupListModels.get(duplicateChartsFoundListViewID.getSelectionModel().getSelectedIndex()).remove(curLeftSongModel);
+                chartDupsList.remove(curLeftSongModel);
+                Tools.deleteFolder(curLeftSongModel.chartFolderPath);
+
+                clearChartInfo(LEFT_SIDE);
+                duplicateChartsFoundListViewID.refresh();
             }
         });
     }

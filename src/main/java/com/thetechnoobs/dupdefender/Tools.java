@@ -40,6 +40,36 @@ public class Tools {
         return songModels;
     }
 
+    public static void deleteFolder(String folderPath) {
+        File folder = new File(folderPath);
+        if (!folder.exists()) {
+            System.out.println("Folder does not exist: " + folderPath);
+            return;
+        }
+
+        deleteFolderContents(folder);
+
+        if (folder.delete()) {
+            System.out.println("Deleted folder: " + folderPath);
+        } else {
+            System.out.println("Failed to delete folder: " + folderPath);
+        }
+    }
+
+    private static void deleteFolderContents(File file) {
+        if (file.isDirectory()) {
+            for (File child : file.listFiles()) {
+                deleteFolderContents(child);
+            }
+        }
+        if (file.delete()) {
+            System.out.println("Deleted: " + file.getPath());
+        } else {
+            System.out.println("Failed to delete: " + file.getPath());
+        }
+    }
+
+
     public static SongModel createSongModelFromIni(String pathToIni) throws IOException {
         // Detect the encoding of the INI file
         Charset iniFileEncoding = EncodingDetector.detectFileEncoding(pathToIni);
