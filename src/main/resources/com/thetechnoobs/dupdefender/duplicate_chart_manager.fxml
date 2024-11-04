@@ -12,10 +12,11 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="730.0" prefWidth="1326.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.thetechnoobs.dupdefender.DuplicateChartManagerController">
    <children>
-      <Pane fx:id="leftChartPrevewID" layoutX="8.0" layoutY="16.0" prefHeight="144.0" prefWidth="307.0" style="-fx-border-color: black; -fx-border-radius: 10;" AnchorPane.leftAnchor="5.0">
+      <Pane fx:id="leftChartPrevewID" layoutX="5.0" layoutY="33.0" prefHeight="130.0" prefWidth="307.0" style="-fx-border-color: black; -fx-border-radius: 10;" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="33.0">
          <children>
             <VBox alignment="CENTER" layoutX="116.0" layoutY="23.0" prefHeight="100.0" prefWidth="164.0">
                <children>
@@ -26,10 +27,9 @@
                </children>
             </VBox>
             <ImageView fx:id="leftChartAlbumImgID" fitHeight="100.0" fitWidth="111.0" layoutX="3.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true" />
-            <Label fx:id="leftChartPathFolderLabelID" layoutX="10.0" layoutY="6.0" prefHeight="17.0" prefWidth="287.0" text="path/to/chart/folder" textOverrun="LEADING_ELLIPSIS" />
          </children>
       </Pane>
-      <Pane fx:id="rightChartPreview" layoutX="1011.0" layoutY="16.0" prefHeight="144.0" prefWidth="307.0" style="-fx-border-color: black; -fx-border-radius: 10;" AnchorPane.rightAnchor="5.0">
+      <Pane fx:id="rightChartPreview" layoutX="1011.0" layoutY="30.0" prefHeight="130.0" prefWidth="307.0" style="-fx-border-color: black; -fx-border-radius: 10;" AnchorPane.rightAnchor="6.0">
          <children>
             <VBox alignment="CENTER" layoutX="1.0" layoutY="23.0" prefHeight="100.0" prefWidth="181.0">
                <children>
@@ -40,7 +40,6 @@
                </children>
             </VBox>
             <ImageView fx:id="rightChartAlbumImgID" fitHeight="100.0" fitWidth="100.0" layoutX="193.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true" />
-            <Label fx:id="rightChartPathFolderLabelID" layoutX="14.0" layoutY="6.0" prefHeight="17.0" prefWidth="287.0" text="path/to/chart/folder" textOverrun="LEADING_ELLIPSIS" />
          </children>
       </Pane>
       <ListView fx:id="duplicateChartsFoundListViewID" focusTraversable="false" layoutX="504.0" layoutY="33.0" prefHeight="278.0" prefWidth="317.0" />
@@ -49,22 +48,13 @@
          <children>
             <Label layoutX="116.0" layoutY="5.0" text="Duplicate charts" />
             <ListView fx:id="duplicateChartsListviewID" focusTraversable="false" layoutX="5.0" layoutY="23.0" prefHeight="278.0" prefWidth="307.0" />
-            <HBox alignment="CENTER" layoutX="79.0" layoutY="310.0" prefHeight="51.0" prefWidth="160.0" spacing="5.0" style="-fx-border-color: black; -fx-border-radius: 10;">
+            <HBox alignment="CENTER" layoutX="95.0" layoutY="311.0" prefHeight="51.0" prefWidth="127.0" spacing="20.0" style="-fx-border-color: black; -fx-border-radius: 10;">
                <children>
                   <Pane prefHeight="200.0" prefWidth="220.0" style="-fx-border-color: gray; -fx-border-radius: 5; -fx-background-radius: 5;">
                      <children>
                         <ImageView fx:id="sendChartLeftImgBtnID" fitHeight="40.0" fitWidth="40.0" layoutX="5.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@arrow_left_stop.png" />
-                           </image>
-                        </ImageView>
-                     </children>
-                  </Pane>
-                  <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: gray; -fx-border-radius: 5; -fx-background-radius: 5;">
-                     <children>
-                        <ImageView fx:id="deleteSelectedChartImgID" fitHeight="30.0" fitWidth="30.0" layoutX="4.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@trash.png" />
                            </image>
                         </ImageView>
                      </children>
@@ -296,7 +286,7 @@
             </AnchorPane>
          </content>
       </ScrollPane>
-      <VBox alignment="TOP_CENTER" layoutX="321.0" layoutY="16.0" prefHeight="713.0" prefWidth="181.0" style="-fx-border-color: Black; -fx-border-radius: 10;" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="319.0" AnchorPane.topAnchor="16.0">
+      <VBox alignment="TOP_CENTER" layoutX="321.0" layoutY="33.333333333333336" prefHeight="696.0" prefWidth="181.0" style="-fx-border-color: Black; -fx-border-radius: 10;" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="319.0" AnchorPane.topAnchor="33.0">
          <children>
             <HBox alignment="CENTER" prefHeight="45.0" prefWidth="181.0" spacing="3.0">
                <children>
@@ -321,7 +311,7 @@
             </ScrollPane>
          </children>
       </VBox>
-      <VBox alignment="TOP_CENTER" layoutX="827.0" layoutY="13.0" prefHeight="713.0" prefWidth="179.0" style="-fx-border-color: black; -fx-border-radius: 10;">
+      <VBox alignment="TOP_CENTER" layoutX="827.0" layoutY="31.0" prefHeight="695.0" prefWidth="179.0" style="-fx-border-color: black; -fx-border-radius: 10;">
          <children>
             <HBox alignment="CENTER" prefHeight="45.0" prefWidth="181.0" spacing="3.0">
                <children>
@@ -346,5 +336,15 @@
             </ScrollPane>
          </children>
       </VBox>
+      <Label fx:id="leftChartPathFolderLabelID" layoutX="6.0" layoutY="6.0" prefHeight="17.0" prefWidth="497.0" text="path/to/chart/folder" textOverrun="LEADING_ELLIPSIS" AnchorPane.leftAnchor="6.0" AnchorPane.topAnchor="6.0">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Label>
+      <Label fx:id="rightChartPathFolderLabelID" layoutX="1032.0" layoutY="7.0" prefHeight="17.0" prefWidth="497.0" text="path/to/chart/folder" textOverrun="LEADING_ELLIPSIS" AnchorPane.rightAnchor="7.0" AnchorPane.topAnchor="4.0">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

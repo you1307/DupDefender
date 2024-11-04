@@ -48,7 +48,6 @@ public class DuplicateChartManagerController {
     public ImageView deleteRightCharterImgBtnID;
     public ImageView rightGuitarDiffImgID, rightBassDiffImgID, rightDrumDiffImgID, rightKeysDiffImgID, rightLyricDiffImgID;
     public ScrollPane rightChartImgScrollViewID;
-    public Pane extraChartInfoRightPaneID;
     public VBox extraChartInfoRightVboxID;
     public MenuButton rightInstermentMenuID, rightDifficultyMenuID;
     public HBox rightMediaHboxID;
@@ -170,6 +169,8 @@ public class DuplicateChartManagerController {
                 duplicateChartsFoundListViewID.refresh();
             }
         });
+
+
     }
 
     private void returnSongModelToCenter(int side){
@@ -330,6 +331,7 @@ public class DuplicateChartManagerController {
                 leftDrumDiffLabelID.setText(null);
                 leftLyricDiffLabelID.setText(null);
                 leftMediaHboxID.getChildren().clear();
+                leftChartPathFolderLabelID.setText("path/to/folder");
                 break;
             case RIGHT_SIDE:
                 extraChartInfoRightVboxID.getChildren().clear();
@@ -350,6 +352,7 @@ public class DuplicateChartManagerController {
                 rightDrumDiffLabelID.setText(null);
                 rightLyricDiffLabelID.setText(null);
                 rightMediaHboxID.getChildren().clear();
+                rightChartPathFolderLabelID.setText("path/to/folder");
                 break;
         }
     }
