@@ -100,50 +100,6 @@ public class MainPageController {
             }
         });
 
-
-
-//            @Override
-//            protected void updateItem(SongModel songData, boolean empty) {
-//                super.updateItem(songData, empty);
-//
-//                // Remove old listener if it exists
-//                if (selectedListener != null) {
-//                    selectedProperty().removeListener(selectedListener);
-//                    selectedListener = null;
-//                }
-//
-//                if (empty || songData == null) {
-//                    if (songItemViewController != null) {
-//                        songItemViewController.clearData();
-//                    }
-//                    setGraphic(null);
-//                } else {
-//                    if (songItemView == null) {
-//                        FXMLLoader loader = new FXMLLoader(getClass().getResource("songItemView.fxml"));
-//                        try {
-//                            songItemView = loader.load();
-//                            songItemViewController = loader.getController();
-//                        } catch (IOException e) {
-//                            e.printStackTrace();
-//                        }
-//                    }
-//                    songItemViewController.setData(songData);
-//                    setGraphic(songItemView);
-//
-//                    // Update visuals based on selection
-//                    songItemViewController.setSelected(isSelected());
-//
-//                    // Add listener to update visuals when selection changes
-//                    selectedListener = (obs, wasSelected, isNowSelected) -> {
-//                        songItemViewController.setSelected(isNowSelected);
-//                        displayChartPreviewImg(songData);
-//                        displayChartInfo(songData);
-//                    };
-//                    selectedProperty().addListener(selectedListener);
-//                }
-//            }
-//        });
-
         Image fileExploreBtnImg = new Image(Objects.requireNonNull(getClass().getResourceAsStream("file_dock_search_fill.png")));
         ImageView imageView = new ImageView(fileExploreBtnImg);
         openExplorerButton.setGraphic(imageView);
