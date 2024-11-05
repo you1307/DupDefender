@@ -322,7 +322,6 @@ public class MainPageController {
         File selectedDirectory = directoryChooser.showDialog(new Stage());
 
         if (selectedDirectory != null) {
-            // Create the task
             Task<Void> searchTask = new Task<Void>() {
                 @Override
                 protected Void call() throws Exception {
@@ -333,7 +332,6 @@ public class MainPageController {
 
                     System.out.println(songModels.size());
 
-                    // Clear the song list on the JavaFX Application Thread
                     Platform.runLater(() -> {
                         songList.clear();
                         updateFoldersToSearchList();
@@ -342,9 +340,7 @@ public class MainPageController {
                     int totalSongs = songModels.size();
                     int processedSongs = 0;
 
-                    // Update the song list and progress
                     for (SongModel songData : songModels) {
-                        // Check if the task is cancelled
                         if (isCancelled()) {
                             break;
                         }
@@ -352,7 +348,6 @@ public class MainPageController {
                             songList.add(songData);
                         });
                         processedSongs++;
-                        // Update progress
                         updateProgress(processedSongs, totalSongs);
                     }
 
@@ -360,21 +355,17 @@ public class MainPageController {
                 }
             };
 
-            // Bind the progress indicator's visibility and progress properties
             progressIndicator.visibleProperty().bind(searchTask.runningProperty());
             progressTxtWarningLabelID.visibleProperty().bind(searchTask.runningProperty());
             progressVboxWarnID.visibleProperty().bind(searchTask.runningProperty());
 
             progressIndicator.progressProperty().bind(searchTask.progressProperty());
 
-            // Handle task failure
             searchTask.setOnFailed(event -> {
                 Throwable exception = searchTask.getException();
                 exception.printStackTrace();
-                // You can show an alert or notification to the user
             });
 
-            // Start the task in a new thread
             Thread searchThread = new Thread(searchTask);
             searchThread.setDaemon(true);
             searchThread.start();
