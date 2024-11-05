@@ -4,6 +4,7 @@ import com.thetechnoobs.dupdefender.models.SongModel;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.concurrent.Task;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,6 +16,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.DirectoryChooser;
@@ -40,6 +42,9 @@ public class MainPageController {
     public Label guitarDiffLabelID, bassDiffLabelID, lyricDiffLabelID, drumDiffLabelID, keysDiffLabelID;
     public ImageView guitarDiffImgID, bassDiffImgID, drumDiffImgID, lyricDiffImgID, keysDiffImgID;
     public HBox mediaHboxID;
+    public ProgressIndicator progressIndicator;
+    public Label progressTxtWarningLabelID;
+    public VBox progressVboxWarnID;
 
     private ObservableList<SongModel> songList = FXCollections.observableArrayList();
     private ArrayList<String> foldersToSearch = new ArrayList<>();
@@ -316,32 +321,63 @@ public class MainPageController {
         directoryChooser.setTitle("Select a folder");
         File selectedDirectory = directoryChooser.showDialog(new Stage());
 
-
         if (selectedDirectory != null) {
-            Thread searthThread = new Thread() {
+            // Create the task
+            Task<Void> searchTask = new Task<Void>() {
                 @Override
-                public void run() {
+                protected Void call() throws Exception {
                     ArrayList<SongModel> songModels = new ArrayList<>();
 
                     songModels.addAll(Tools.findAndExtractSongInfo(selectedDirectory.getAbsolutePath()));
                     foldersToSearch.add(selectedDirectory.getAbsolutePath());
 
-
                     System.out.println(songModels.size());
 
-                    songList.clear();
+                    // Clear the song list on the JavaFX Application Thread
+                    Platform.runLater(() -> {
+                        songList.clear();
+                        updateFoldersToSearchList();
+                    });
 
-                    songModels.forEach(songData -> {
+                    int totalSongs = songModels.size();
+                    int processedSongs = 0;
+
+                    // Update the song list and progress
+                    for (SongModel songData : songModels) {
+                        // Check if the task is cancelled
+                        if (isCancelled()) {
+                            break;
+                        }
                         Platform.runLater(() -> {
-                            updateFoldersToSearchList();
                             songList.add(songData);
                         });
-                    });
+                        processedSongs++;
+                        // Update progress
+                        updateProgress(processedSongs, totalSongs);
+                    }
+
+                    return null;
                 }
             };
 
+            // Bind the progress indicator's visibility and progress properties
+            progressIndicator.visibleProperty().bind(searchTask.runningProperty());
+            progressTxtWarningLabelID.visibleProperty().bind(searchTask.runningProperty());
+            progressVboxWarnID.visibleProperty().bind(searchTask.runningProperty());
 
-            searthThread.start();
+            progressIndicator.progressProperty().bind(searchTask.progressProperty());
+
+            // Handle task failure
+            searchTask.setOnFailed(event -> {
+                Throwable exception = searchTask.getException();
+                exception.printStackTrace();
+                // You can show an alert or notification to the user
+            });
+
+            // Start the task in a new thread
+            Thread searchThread = new Thread(searchTask);
+            searchThread.setDaemon(true);
+            searchThread.start();
         }
     }
 }
