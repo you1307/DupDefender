@@ -7,12 +7,18 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+
+import java.awt.*;
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -34,6 +40,7 @@ public class DuplicateChartManagerController {
     public MenuButton leftInstermentMenuID, leftDifficultyMenuID;
     public HBox leftMediaHboxID;
     public Label leftChartPathFolderLabelID;
+    public Button openLeftChartInExplororBtnID;
     private ChartVisulizerController leftChartVisulizerController;
 
     // center pane stuff
@@ -53,6 +60,7 @@ public class DuplicateChartManagerController {
     public HBox rightMediaHboxID;
     private ChartVisulizerController rightChartVisulizerController;
     public Label rightChartPathFolderLabelID;
+    public Button openRightChartInExplororBtnID;
 
 
     //the charts that have dups
@@ -149,10 +157,11 @@ public class DuplicateChartManagerController {
             public void handle(MouseEvent mouseEvent) {
                 if(curRightSongModel != null){
                     dupListModels.get(duplicateChartsFoundListViewID.getSelectionModel().getSelectedIndex()).remove(curRightSongModel);
-                    chartDupsList.remove(curRightSongModel);
+
                     Tools.deleteFolder(curRightSongModel.chartFolderPath);
 
                     clearChartInfo(RIGHT_SIDE);
+                    curRightSongModel = null;
                     duplicateChartsFoundListViewID.refresh();
                 }
             }
@@ -162,14 +171,28 @@ public class DuplicateChartManagerController {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 dupListModels.get(duplicateChartsFoundListViewID.getSelectionModel().getSelectedIndex()).remove(curLeftSongModel);
-                chartDupsList.remove(curLeftSongModel);
+
                 Tools.deleteFolder(curLeftSongModel.chartFolderPath);
 
                 clearChartInfo(LEFT_SIDE);
+                curLeftSongModel = null;
                 duplicateChartsFoundListViewID.refresh();
             }
         });
 
+        openLeftChartInExplororBtnID.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                openFolderInExplorer(curLeftSongModel.chartFolderPath);
+            }
+        });
+
+        openRightChartInExplororBtnID.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                openFolderInExplorer(curRightSongModel.chartFolderPath);
+            }
+        });
 
     }
 
@@ -440,6 +463,18 @@ public class DuplicateChartManagerController {
         chartDupsList.addAll(songModels);
     }
 
+    private void openFolderInExplorer(String folderPath) {
+        File folder = new File(folderPath);
+        if (folder.exists() && folder.isDirectory()) {
+            try {
+                Desktop.getDesktop().open(folder);
+            } catch (IOException e) {
+                System.err.println("Error opening folder: " + e.getMessage());
+            }
+        } else {
+            System.err.println("The path does not exist or is not a directory.");
+        }
+    }
 
     public void setDupListModels(ObservableList<ArrayList<SongModel>> dupListModels){
         this.dupListModels.setAll(dupListModels);

@@ -1,10 +1,6 @@
 package com.thetechnoobs.dupdefender;
 
 import com.thetechnoobs.dupdefender.models.SongModel;
-import org.ini4j.Ini;
-import org.ini4j.Profile;
-import org.json.JSONObject;
-import org.jsoup.Jsoup;
 
 import java.io.File;
 import java.io.IOException;
@@ -14,7 +10,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Map;
-import java.util.Optional;
 import java.util.stream.Stream;
 
 public class Tools {
@@ -87,9 +82,9 @@ public class Tools {
         SongModel songModel = new SongModel();
 
         songModel.albumImgPath = addAlbumPath(pathToIni).toUri().toString();
-        songModel.name = Jsoup.parse(dataSection.getOrDefault("name", "")).text();
-        songModel.artist = Jsoup.parse(dataSection.getOrDefault("artist", "")).text();
-        songModel.charter = Jsoup.parse(dataSection.getOrDefault("charter", "")).text();
+        songModel.name = dataSection.getOrDefault("name", "");
+        songModel.artist = dataSection.getOrDefault("artist", "");
+        songModel.charter = dataSection.getOrDefault("charter", "");
         songModel.chartFolderPath = Path.of(pathToIni).getParent().toString();
         songModel.chartType = findChartType(songModel.chartFolderPath);
 
@@ -117,42 +112,6 @@ public class Tools {
         }
 
         return -1; // Return a default value if neither file is found
-    }
-
-
-    private static SongModel createSongModelFromIniOld(String pathToIni) throws IOException{
-        Ini ini = new Ini();
-        ini.getConfig().setMultiOption(true);
-        ini.load(new File(pathToIni));
-
-        Profile.Section dataSection = Optional.ofNullable(ini.get("Song")).orElseGet(() -> ini.get("song"));
-
-        SongModel songModel = new SongModel();
-
-        songModel.albumImgPath = addAlbumPath(pathToIni).toString();
-        songModel.name = Jsoup.parse(dataSection.get("name")).text();
-        songModel.artist = Jsoup.parse(dataSection.get("artist")).text();
-        songModel.charter = Jsoup.parse(dataSection.get("charter")).text();
-
-        return songModel;
-    }
-
-    private static JSONObject createSongJsonObj(String pathToini) throws IOException {
-        Ini ini = new Ini();
-        ini.getConfig().setMultiOption(true);
-        ini.load(new File(pathToini));
-
-
-        Profile.Section dataSection = Optional.ofNullable(ini.get("Song")).orElseGet(() -> ini.get("song"));
-
-        JSONObject songJsonObj = new JSONObject();
-
-        songJsonObj.put("name", Jsoup.parse(dataSection.get("name")).text());
-        songJsonObj.put("artist", Jsoup.parse(dataSection.get("artist")).text());
-        songJsonObj.put("charter", Jsoup.parse(dataSection.get("charter")).text());
-        songJsonObj.put("album", addAlbumPath(pathToini).toString());
-
-        return songJsonObj;
     }
 
     private static Path addAlbumPath(String pathToIni){
